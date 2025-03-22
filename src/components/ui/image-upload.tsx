@@ -2,11 +2,12 @@
 
 import { useState, useRef } from 'react';
 import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
-import { Button } from './button';
-import { Label } from './label';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 import { supabase, isSupabaseAvailable } from '@/lib/supabase/client';
 import { toast } from '@/components/ui/use-toast';
 import 'react-image-crop/dist/ReactCrop.css';
+import Image from 'next/image';
 
 interface ImageUploadProps {
   onUploadComplete: (url: string, path: string) => void;
@@ -185,12 +186,16 @@ export function ImageUpload({
             aspect={aspectRatio}
             circularCrop={circularCrop}
           >
-            <img
-              ref={imageRef}
-              src={previewUrl}
-              alt="Preview"
-              className="max-h-[400px] w-auto"
-            />
+            <div className="relative w-full h-[400px]">
+              <Image
+                ref={imageRef}
+                src={previewUrl}
+                alt="Preview"
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </ReactCrop>
 
           <Button

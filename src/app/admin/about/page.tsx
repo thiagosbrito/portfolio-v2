@@ -38,10 +38,6 @@ export default function AboutPage() {
   
   const { toast } = useToast();
 
-  useEffect(() => {
-    fetchAboutContent();
-  }, []);
-
   const fetchAboutContent = async () => {
     if (!isSupabaseAvailable() || !supabase) {
       toast({
@@ -92,6 +88,10 @@ export default function AboutPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchAboutContent();
+  }, [fetchAboutContent]);
 
   const handleResumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {

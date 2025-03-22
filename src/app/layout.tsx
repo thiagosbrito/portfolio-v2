@@ -19,7 +19,7 @@ const poppins = Poppins({
 const permanentMarker = Permanent_Marker({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-marker",
+  variable: "--font-permanent-marker",
 });
 
 const inter = Inter({ 
@@ -44,7 +44,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${poppins.variable} ${calSans.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${permanentMarker.variable} ${poppins.variable} ${calSans.variable} font-sans antialiased`}>
         <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
           {children}
           <Toaster />

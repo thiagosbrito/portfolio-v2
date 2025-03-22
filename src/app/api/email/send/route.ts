@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Check for required fields
-    const { to, subject, body: emailBody, threadId } = body;
+    const { to, subject, body: emailBody } = body;
     
     if (!to || !subject || !emailBody) {
       return NextResponse.json(

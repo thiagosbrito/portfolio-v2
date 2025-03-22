@@ -9,7 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Mail, Phone, MapPin, Instagram, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 import { getContactInfo, saveMessage } from '@/lib/supabase/services';
 import { useToast } from '@/components/ui/use-toast';
 import { ContactInfo } from '@/lib/types';

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { getHomeContent, type HomeContent } from '@/lib/supabase/services';
-import { ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 
 export default function HeroSection() {
   const [content, setContent] = useState<HomeContent | null>(null);
@@ -43,8 +43,6 @@ export default function HeroSection() {
   const subHeadlineZ = useTransform(smoothY, [-300, 300], [80, -80]);
   const textZ = useTransform(smoothY, [-300, 300], [60, -60]);
   const ctaZ = useTransform(smoothY, [-300, 300], [70, -70]);
-  const ctaX = useTransform(smoothX, [-300, 300], [-40, 40]);
-  const ctaOpacity = useTransform(smoothY, [-300, 300], [0.4, 1]);
   const socialScale = useTransform(smoothY, [-300, 300], [0.7, 1.3]);
   const scrollZ = useTransform(smoothY, [-300, 300], [40, -40]);
 
