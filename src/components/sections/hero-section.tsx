@@ -131,7 +131,7 @@ export default function HeroSection() {
       <div ref={containerRef} className="container relative z-10 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         {/* Main content grid */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center justify-items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center justify-items-center"
           style={{
             rotateX,
             rotateY,
@@ -151,14 +151,19 @@ export default function HeroSection() {
               rotateY: profileRotateY,
             }}
           >
-            <div className="relative w-56 h-56 lg:w-[400px] lg:h-[400px] transform-gpu">
-              {content?.profile_image && (
+            <div className="relative w-64 h-64 transform-gpu">
+              {content?.profile_image && content.profile_image.startsWith('http') && (
                 <Image
                   src={content.profile_image}
                   alt="Profile"
                   fill
-                  className="rounded-full object-cover border-4 border-primary/30" // More visible border
+                  className="rounded-full object-cover border-4 border-primary/30"
                   priority
+                  sizes="256px"
+                  onError={(e) => {
+                    console.error('Error loading profile image:', e);
+                    // You could set a fallback image here if needed
+                  }}
                 />
               )}
               <motion.div
@@ -177,7 +182,7 @@ export default function HeroSection() {
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-400" // Enhanced gradient
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-600 to-blue-400" // Enhanced gradient
               style={{
                 translateZ: headlineZ,
               }}
@@ -233,7 +238,7 @@ export default function HeroSection() {
               </Button>
               
               <div className="flex items-center gap-4">
-                <Link href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+                <Link href="https://github.com/thiagosbrito" target="_blank" rel="noopener noreferrer">
                   <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 relative overflow-hidden">
                     <motion.span
                       className="absolute inset-0 bg-primary/10"
@@ -244,7 +249,7 @@ export default function HeroSection() {
                     <Github className="h-5 w-5 relative" />
                   </Button>
                 </Link>
-                <Link href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+                <Link href="https://linkedin.com/in/thiagosbrito" target="_blank" rel="noopener noreferrer">
                   <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 relative overflow-hidden">
                     <motion.span
                       className="absolute inset-0 bg-primary/10"
@@ -253,17 +258,6 @@ export default function HeroSection() {
                       }}
                     />
                     <Linkedin className="h-5 w-5 relative" />
-                  </Button>
-                </Link>
-                <Link href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 relative overflow-hidden">
-                    <motion.span
-                      className="absolute inset-0 bg-primary/10"
-                      style={{
-                        scale: socialScale,
-                      }}
-                    />
-                    <Twitter className="h-5 w-5 relative" />
                   </Button>
                 </Link>
               </div>

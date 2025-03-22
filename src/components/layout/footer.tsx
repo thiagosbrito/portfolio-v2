@@ -10,7 +10,7 @@ export default function Footer() {
     { icon: <Linkedin className="h-5 w-5" />, href: 'https://linkedin.com/in/thiagosbrito', label: 'LinkedIn' },
     // { icon: <Twitter className="h-5 w-5" />, href: 'https://twitter.com/yourusername', label: 'Twitter' },
     // { icon: <Instagram className="h-5 w-5" />, href: 'https://instagram.com/yourusername', label: 'Instagram' },
-    { icon: <Mail className="h-5 w-5" />, href: 'mailto:your.email@example.com', label: 'Email' },
+    { icon: <Mail className="h-5 w-5" />, href: 'mailto:brito.dev@outlook.com', label: 'Email' },
   ];
 
   const scrollToTop = () => {

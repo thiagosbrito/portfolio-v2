@@ -186,6 +186,29 @@ export async function getHomeContent(): Promise<HomeContent | null> {
       throw error;
     }
 
+    // If we have a profile image path, construct the full public URL
+    if (data?.profile_image) {
+      try {
+        // Use the correct bucket name 'home' and keep the rest of the path
+        const filePath = data.profile_image;
+        
+        console.log('Processing image:', {
+          originalPath: data.profile_image,
+          filePath
+        });
+
+        // Get the public URL
+        const { data: { publicUrl } } = supabase.storage
+          .from('home')
+          .getPublicUrl(filePath);
+        
+        console.log('Generated public URL:', publicUrl);
+        data.profile_image = publicUrl;
+      } catch (urlError) {
+        console.error('Error processing image URL:', urlError);
+      }
+    }
+
     return data;
   } catch (error) {
     console.error('Error fetching home content:', error);

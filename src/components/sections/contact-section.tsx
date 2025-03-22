@@ -155,8 +155,7 @@ export default function ContactSection() {
   ];
 
   const socialLinks = {
-    instagram: 'https://instagram.com/britoart',
-    linkedin: 'https://linkedin.com/in/britodesigner',
+    linkedin: 'https://linkedin.com/in/thiagosbrito',
   };
 
   return (
@@ -282,7 +281,7 @@ export default function ContactSection() {
             variants={fadeIn('left', 0.3)}
             className="space-y-8 rounded-lg border bg-card/50 p-8 shadow-lg relative overflow-hidden backdrop-blur-sm"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent" />
+            <div className="absolute inset-0 h-full bg-gradient-to-br from-primary/5 via-primary/3 to-transparent" />
             <div className="relative space-y-4">
               <h3 className="text-2xl font-bold tracking-tight">Contact Information</h3>
               <p className="text-muted-foreground text-lg">
@@ -317,15 +316,6 @@ export default function ContactSection() {
             <div className="relative space-y-4 pt-4 border-t">
               <h3 className="text-xl font-bold">Connect</h3>
               <div className="flex gap-4">
-                <a
-                  href={socialLinks.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-xl p-3 text-muted-foreground hover:text-primary bg-primary/5 hover:bg-primary/10 transition-all duration-300"
-                >
-                  <Instagram className="h-5 w-5" />
-                  <span className="sr-only">Instagram</span>
-                </a>
                 <a
                   href={socialLinks.linkedin}
                   target="_blank"
