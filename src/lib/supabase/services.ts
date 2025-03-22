@@ -122,19 +122,6 @@ export async function getEducation(): Promise<Education[]> {
   }
 }
 
-export interface AboutMe {
-  id: string;
-  headline: string;
-  bio: string;
-  profile_image: string;
-  social_links: {
-    github?: string;
-    linkedin?: string;
-  };
-  created_at: string;
-  updated_at: string;
-}
-
 export interface HomeContent {
   id: string;
   headline: string;
