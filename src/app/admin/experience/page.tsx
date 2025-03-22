@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { 
   Card, 
   CardContent, 
@@ -45,11 +45,7 @@ export default function ExperiencePage() {
   
   const { toast } = useToast();
 
-  useEffect(() => {
-    fetchExperiences();
-  }, []);
-
-  const fetchExperiences = async () => {
+  const fetchExperiences = useCallback(async () => {
     if (!isSupabaseAvailable() || !supabase) {
       toast({
         title: "Error",
@@ -63,7 +59,7 @@ export default function ExperiencePage() {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from("experiences")
+        .from("experience")
         .select("*")
         .order("display_order", { ascending: true });
 
@@ -82,7 +78,11 @@ export default function ExperiencePage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchExperiences();
+  }, [fetchExperiences]);
 
   const resetForm = () => {
     setCompany("");

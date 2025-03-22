@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,45 +35,45 @@ export default function HomePage() {
     cta_link: '',
   });
 
-  useEffect(() => {
-    async function fetchHomeContent() {
-      try {
-        if (!supabase) {
-          console.error('Supabase client not initialized');
-          return;
-        }
-
-        const { data, error } = await supabase
-          .from('home')
-          .select('*')
-          .single();
-
-        if (error) {
-          if (error.code === 'PGRST116') {
-            // No data found, create initial record
-            const { error: insertError } = await supabase
-              .from('home')
-              .insert([content]);
-
-            if (insertError) {
-              throw insertError;
-            }
-          } else {
-            throw error;
-          }
-        } else if (data) {
-          setContent(data);
-        }
-      } catch (error) {
-        console.error('Error fetching home content:', error);
-        toast.error('Failed to fetch home content');
-      } finally {
-        setIsLoading(false);
+  const fetchHomeContent = useCallback(async () => {
+    try {
+      if (!supabase) {
+        console.error('Supabase client not initialized');
+        return;
       }
-    }
 
+      const { data, error } = await supabase
+        .from('home')
+        .select('*')
+        .single();
+
+      if (error) {
+        if (error.code === 'PGRST116') {
+          // No data found, create initial record
+          const { error: insertError } = await supabase
+            .from('home')
+            .insert([content]);
+
+          if (insertError) {
+            throw insertError;
+          }
+        } else {
+          throw error;
+        }
+      } else if (data) {
+        setContent(data);
+      }
+    } catch (error) {
+      console.error('Error fetching home content:', error);
+      toast.error('Failed to fetch home content');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [content]);
+
+  useEffect(() => {
     fetchHomeContent();
-  }, []);
+  }, [fetchHomeContent, content]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

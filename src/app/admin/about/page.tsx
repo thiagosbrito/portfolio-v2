@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { 
   Card, 
   CardContent, 
@@ -38,7 +38,7 @@ export default function AboutPage() {
   
   const { toast } = useToast();
 
-  const fetchAboutContent = async () => {
+  const fetchAboutContent = useCallback(async () => {
     if (!isSupabaseAvailable() || !supabase) {
       toast({
         title: "Error",
@@ -87,7 +87,7 @@ export default function AboutPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
 
   useEffect(() => {
     fetchAboutContent();

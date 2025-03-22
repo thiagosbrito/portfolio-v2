@@ -14,7 +14,13 @@ import { useToast } from '@/components/ui/use-toast';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function EditProjectPage({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function ProjectDetailPage({ params }: PageProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(true);
